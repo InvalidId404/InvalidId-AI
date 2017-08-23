@@ -46,18 +46,28 @@ class KMeansCluster:
         plt.plot([c[0] for c in self.centroids], [c[1] for c in self.centroids], 'ro')
         plt.show()
 
-p = 2000
-data_set = []
-for _ in range(p):
-    if np.random.random() > 0.5:
-        data_set.append(
-            [np.random.normal(0.0, 0.9), np.random.normal(0.0, 0.9)]
-        )
-    else:
-        data_set.append(
-            [np.random.normal(3.0, 0.5), np.random.normal(1.0, 0.5)]
-        )
-c = KMeansCluster()
-c.clustering_data = data_set
-c.cluster()
-c.draw()
+
+class DBSCANCluster:
+    def __init__(self):
+        self.training_data = []
+        # [(x, y), 소속 클러스터]
+
+    def cluster(self, radios, threshold):
+        d = lambda x, y: (x[0]-y[0])**2+(x[1]-y[1])**2
+        c = 0
+
+        def core(data, r=radios, t=threshold):
+            for record in data:
+                if not record[1]:
+                    n = [p for p in self.training_data if d(p[0], record[0]) < radios]
+                    if len(n) < threshold:
+                        record[1] = 'Noise or Border'
+                    else:
+                        record[1] = 'Core'
+                        core(n, r, t)
+                else:
+                    continue
+                return 0
+        core(self.training_data)
+
+
