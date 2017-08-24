@@ -1,21 +1,15 @@
-import expection
-import numpy as np
-import tools.excel as xl
+import neuralnetwork
+import os
 
-p = 1000
-p_set = []
-for i in range(p):  # 산포도 생성
-    x = np.random.normal(0.0, 0.5)
-    y = np.random.normal(3.0, 0.4)*x + np.random.normal(0.0, 0.4)
-    p_set.append([x, y])
+os.chdir(os.getcwd()+'/test_data')
+test_file = open('mnist_train_100.csv')
 
+file = test_file.readlines()
+training_data = []
 
-AI = expection.LinearRegression(p_set)
-AI.regress()
-AI.draw(graph=0)
-AI.draw(graph=1)
-AI.draw(graph=2)
+for record in file:
+    record = record.split(',')
+    training_data.append([int(record[0]), [int(i)/256 + 0.01 for i in record[1:]]])
+    training_data[-1][0] = [int(training_data[-1][0] is i)*0.98+0.01 for i in range(10)]
 
-print(AI.coeff)
-# 회귀
-
+print(training_data[0])

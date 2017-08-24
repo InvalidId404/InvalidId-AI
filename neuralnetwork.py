@@ -14,45 +14,45 @@ class FeedFowardNeuralNetwork(NeuralNetwork):
         :keyword 생성자
         :param nodes: 노드 개수(List)
         '''
-        self.nodes = nodes
-        self.classes = len(nodes)
+        self.nodes = nodes  # 계층별 노드 개수 - List
+        self.classes = len(nodes)  # 계층 수
         self.weight = [
             np.random.normal(
                 0.0, self.nodes[i]**(-1/2), (self.nodes[i+1], self.nodes[i])
             ) for i in range(self.classes-1)
-        ]
-        pass
+        ]  # 가중치 초기화
+        self.dataset = []  # 학습 데이터세트, (0 : 입력 데이터, 1 : 레이블)
 
     def query(self, input):
         '''
-        :keyword 전파 메서드
+        :keyword 순전파 메서드
         :param input: 입력 신호
         :return: 결과값 리스트(0~n)
         '''
-        result = []
-        input_data = np.array([input]).T
+        result = []  # 출력값
+        input_data = np.array([input]).T  # 입력 데이터 - 열벡터
         for i in range(self.classes):
-            if i is 0:
+            if i is 0:  # 초기값
                 result.append(input_data)
-            else:
+            else:  # 순전파
                 result.append(
                     self.weight[i-1]@result[-1]
                 )
         return result
 
-    def descent(self, input, target, learning_rate, tolerance, weight_argument=None):
+    def descent(self, input, target, lr, tole, weight_defined=None):
         '''
         :keyword 확률적 경사감소 메서드
         :param target: 목표 신호
         :param learning_rate 학습률
         :param tolerance 오차 허용치
-        :param weight_argument 사용자 지정 가중치
+        :param weight_defined 사용자 지정 가중치
         :return: 새로운 가중치 행렬
         '''
         input_data = np.array([input]).T
         outputs = self.query(input_data)
         target_data = np.array([target]).T
-        weight = weight_argument if not weight_argument else self.weight
+        weight = weight_defined if not weight_defined else self.weight
         errors = []
         for i in range(self.classes):
             if i is 0:
@@ -64,15 +64,22 @@ class FeedFowardNeuralNetwork(NeuralNetwork):
             )
         return weight
 
-    def train(self, epoch, target, learning_rate, tolerance):
+    def train(self, epoch, learning_rate, tolerance, weight_defined=None, dataset_defined=None):
         '''
         :keyword 학습 메서드
         :param epoch: 주기
-        :param target: 목표 신호
         :param learning_rate: 학습률
         :param tolerance: 오차 허용치
         :return: 학습된 가중치 행렬
         '''
-
-nodes = [7, 3, 2]
-AI = FeedFowardNeuralNetwork(nodes)
+        weight = weight_defined if not weight_defined else self.weight
+        dataset = dataset_defined if not dataset_defined else self.dataset
+        for _ in range(epoch):
+            for record in dataset:
+                weight = self.descent(
+                    input=record[0],
+                    target=record[1],
+                    lr=learning_rate,
+                    tole=tolerance
+                )
+        return weight
