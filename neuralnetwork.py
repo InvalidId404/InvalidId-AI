@@ -44,15 +44,14 @@ class FeedFowardNeuralNetwork(NeuralNetwork):
         '''
         :keyword 확률적 경사감소 메서드
         :param target: 목표 신호
-        :param learning_rate 학습률
-        :param tolerance 오차 허용치
+        :param lr 학습률
         :param weight_defined 사용자 지정 가중치
         :return: 새로운 가중치 행렬
         '''
         input_data = np.array([input]).T
         outputs = self.query(input_data)
         target_data = np.array([target]).T
-        weight = weight_defined if weight_defined else self.weight
+        weight = weight_defined if weight_defined else self.weight[:]
         for i in range(self.classes-1):
             if i is 0:
                 error = target_data-outputs[-1]
@@ -69,7 +68,8 @@ class FeedFowardNeuralNetwork(NeuralNetwork):
         :keyword 학습 메서드
         :param epoch: 주기
         :param learning_rate: 학습률
-        :param tolerance: 오차 허용치
+        :param weight_defined 사용자 지정 가중치
+        :param dataset_defined 사용자 지정 데이터세트
         :return: 학습된 가중치 행렬
         '''
         weight = weight_defined if weight_defined else self.weight[:]
@@ -79,6 +79,65 @@ class FeedFowardNeuralNetwork(NeuralNetwork):
                 weight = self.descent(
                     input=record[1],
                     target=record[0],
+                    lr=learning_rate,
+                    weight_defined=weight
+                )
+        return weight
+
+
+class FeedfowardNeuralNetwork_Dropout(FeedFowardNeuralNetwork):
+    pass
+
+
+class FeedfowardNeuralNetwork_Minibatch(FeedFowardNeuralNetwork):
+    def __init__(self, nodes, minibatch):
+        super.__init__(nodes)
+        self.minibatch = minibatch
+
+    def descent(self, batch, lr, weight_defined=None):
+        '''
+        :keyword 확률적 경사감소 메서드
+        :param batch 배치
+        :param lr 학습률
+        :param weight_defined 사용자 지정 가중치
+        :return: 새로운 가중치 행렬
+        '''
+        weight = weight_defined if weight_defined else self.weight[:]
+        error = [0 for i in range(self.classes-1)]
+        for input_data, target_data in batch:
+            input_data = np.array([input]).T
+            target_data = np.array([target]).T
+            outputs = self.query(input_data)
+            for i in range(self.classes - 1):
+                if i is 0:
+                    error[-1-i] += target_data - outputs[-1]
+                else:
+                    error[-1-i] += weight[-i].T @ prev_error
+        for i, error in reversed(error):
+            weight[-i - 1] += lr * (
+                error * outputs[-i - 1] * (1.0 - outputs[-i - 1]) @ outputs[-i - 2].T
+            )
+        return weight
+
+    def train(self, epoch, learning_rate, weight_defined=None, dataset_defined=None, batch_defined=None):
+        '''
+        :keyword 학습 메서드
+        :param epoch: 주기
+        :param learning_rate 학습률
+        :param weight_defined 사용자 지정 가중치
+        :param dataset_defined 사용자 지정 데이터세트
+        :param batch_defined 사용자 지정 배치(n(D))
+        :return: 학습된 가중치 행렬
+        '''
+        weight = weight_defined if weight_defined else self.weight[:]
+        dataset = dataset_defined if dataset_defined else self.dataset[:]
+        batch = batch_defined if batch_defined else self.minibatch
+        batch_set = [[dataset.pop(0) for i in batch] for l in len(dataset)//batch]
+        dataset = None;
+        for _ in range(epoch):
+            for minibatch in dataset:
+                weight = self.descent(
+                    batch=minibatch,
                     lr=learning_rate,
                     weight_defined=weight
                 )
