@@ -142,3 +142,37 @@ class FeedfowardNeuralNetwork_Minibatch(FeedFowardNeuralNetwork):
                     weight_defined=weight
                 )
         return weight
+
+
+class FeedfowardNeuralNetwork_WeightAttenuation(FeedFowardNeuralNetwork):
+    def __init__(self, attenuation_constant=10**(-3)):
+        super.__init__()
+        self.att_const = attenuation_constant
+
+    def descent(self, input, target, lr, weight_defined=None):
+        '''
+                :keyword 확률적 경사감소 메서드
+                :param target: 목표 신호
+                :param lr 학습률
+                :param weight_defined 사용자 지정 가중치
+                :return: 새로운 가중치 행렬
+                '''
+        input_data = np.array([input]).T
+        outputs = self.query(input_data)
+        target_data = np.array([target]).T
+        weight = weight_defined if weight_defined else self.weight[:]
+        for i in range(self.classes - 1):
+            if i is 0:
+                error = target_data - outputs[-1]
+            else:
+                error = weight[-i].T @ prev_error
+            error+=(self.att_const/2)*self.sum_of_squares(weight[-i-1])
+            weight[-i - 1] += lr * (
+                error * outputs[-i - 1] * (1.0 - outputs[-i - 1]) @ outputs[-i - 2].T
+            )
+            prev_error = error
+        return weight
+
+    def sum_of_squares(self, iterable):
+        avg = sum(iterable)/len(iterable)
+        return sum((iterable-avg)**2)
