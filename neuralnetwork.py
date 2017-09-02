@@ -8,7 +8,7 @@ class NeuralNetwork:
     }
 
 
-class FeedFowardNeuralNetwork(NeuralNetwork):
+class FeedfowardNeuralNetwork(NeuralNetwork):
     def __init__(self, nodes):
         '''
         :keyword 생성자
@@ -85,13 +85,13 @@ class FeedFowardNeuralNetwork(NeuralNetwork):
         return weight
 
 
-class FeedfowardNeuralNetwork_Dropout(FeedFowardNeuralNetwork):
+class FeedfowardNeuralNetwork_Dropout(FeedfowardNeuralNetwork):
     pass
 
 
-class FeedfowardNeuralNetwork_Minibatch(FeedFowardNeuralNetwork):
+class FeedfowardNeuralNetwork_Minibatch(FeedfowardNeuralNetwork):
     def __init__(self, nodes, minibatch):
-        super.__init__(nodes)
+        FeedfowardNeuralNetwork.__init__(self, nodes)
         self.minibatch = minibatch
 
     def descent(self, batch, lr, weight_defined=None):
@@ -103,19 +103,22 @@ class FeedfowardNeuralNetwork_Minibatch(FeedFowardNeuralNetwork):
         :return: 새로운 가중치 행렬
         '''
         weight = weight_defined if weight_defined else self.weight[:]
-        error = [0 for i in range(self.classes-1)]
-        for input_data, target_data in batch:
-            input_data = np.array([input]).T
-            target_data = np.array([target]).T
-            outputs = self.query(input_data)
+        error = [0 for i in range(self.classes - 1)]
+
+        for target_data, input_data in batch:
+            input = np.array([input_data]).T
+            target = np.array([target_data]).T
+            outputs = self.query(input)
+
             for i in range(self.classes - 1):
                 if i is 0:
-                    error[-1-i] += target_data - outputs[-1]
+                    error[-1-i] += (target - outputs[-i-1])
                 else:
-                    error[-1-i] += weight[-i].T @ prev_error
-        for i, error in reversed(error):
-            weight[-i - 1] += lr * (
-                error * outputs[-i - 1] * (1.0 - outputs[-i - 1]) @ outputs[-i - 2].T
+                    error[-1-i] += (weight[-i].T @ error[-i])
+
+        for i, error_r in enumerate(reversed(error)):
+            weight[-i-1] += lr * (
+                (error_r/len(batch)) * outputs[-i-1] * (1.0 - outputs[-i-1]) @ outputs[-i - 2].T
             )
         return weight
 
@@ -132,10 +135,10 @@ class FeedfowardNeuralNetwork_Minibatch(FeedFowardNeuralNetwork):
         weight = weight_defined if weight_defined else self.weight[:]
         dataset = dataset_defined if dataset_defined else self.dataset[:]
         batch = batch_defined if batch_defined else self.minibatch
-        batch_set = [[dataset.pop(0) for i in batch] for l in len(dataset)//batch]
+        batch_set = [[dataset.pop(0) for _ in range(batch)] for __ in range(len(dataset)//batch)]
         dataset = None;
         for _ in range(epoch):
-            for minibatch in dataset:
+            for minibatch in batch_set:
                 weight = self.descent(
                     batch=minibatch,
                     lr=learning_rate,
@@ -144,9 +147,9 @@ class FeedfowardNeuralNetwork_Minibatch(FeedFowardNeuralNetwork):
         return weight
 
 
-class FeedfowardNeuralNetwork_WeightAttenuation(FeedFowardNeuralNetwork):
-    def __init__(self, attenuation_constant=10**(-3)):
-        super.__init__()
+class FeedfowardNeuralNetwork_WeightAttenuation(FeedfowardNeuralNetwork):
+    def __init__(self, nodes, attenuation_constant=10**(-3)):
+        FeedFowardNeuralNetwork.__init__(self, nodes)
         self.att_const = attenuation_constant
 
     def descent(self, input, target, lr, weight_defined=None):
