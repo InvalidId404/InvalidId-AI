@@ -149,7 +149,7 @@ class FeedfowardNeuralNetwork_Minibatch(FeedfowardNeuralNetwork):
 
 class FeedfowardNeuralNetwork_WeightAttenuation(FeedfowardNeuralNetwork):
     def __init__(self, nodes, attenuation_constant=10**(-3)):
-        FeedFowardNeuralNetwork.__init__(self, nodes)
+        FeedfowardNeuralNetwork.__init__(self, nodes)
         self.att_const = attenuation_constant
 
     def descent(self, input, target, lr, weight_defined=None):
@@ -178,4 +178,5 @@ class FeedfowardNeuralNetwork_WeightAttenuation(FeedfowardNeuralNetwork):
 
     def sum_of_squares(self, iterable):
         avg = sum(iterable)/len(iterable)
-        return sum((iterable-avg)**2)
+        print(((iterable-avg)**2))
+        return sum(((iterable-avg)**2))
