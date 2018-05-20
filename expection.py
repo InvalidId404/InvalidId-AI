@@ -1,3 +1,4 @@
+'''
 import numpy as np
 import matplotlib.pyplot as plt
 import sympy as sp
@@ -84,3 +85,18 @@ class LogisticRegression:
 
 class NonLinearRegression:
     pass
+'''
+
+import numpy as np
+
+
+def linear_regression(data_set, learning_rate, step):
+    #  data_set[var][label]
+    size = len(data_set)
+
+    def cost(w, b):  # 오차함수 정의
+        return (1/(2*size))*sum([(d[1] - (w*d[0]+b))**2 for d in data_set])
+
+    W, B = 1  # 파라미터 초기값 설정
+
+
