@@ -88,15 +88,48 @@ class NonLinearRegression:
 '''
 
 import numpy as np
+import matplotlib.pyplot as plt
 
 
-def linear_regression(data_set, learning_rate, step):
+def linear_regression(data_set, learning_rate, epoch):
     #  data_set[var][label]
+    X = [data[0] for data in data_set]
+    Y = [data[1] for data in data_set]
     size = len(data_set)
 
-    def cost(w, b):  # 오차함수 정의
-        return (1/(2*size))*sum([(d[1] - (w*d[0]+b))**2 for d in data_set])
+    W = 0  # 파라미터 초기값 설정
+    B = 0
 
-    W, B = 1  # 파라미터 초기값 설정
+    for i in range(epoch):
+        W -= (learning_rate/size) * sum([W*(X[i])**2 - X[i]*Y[i] + B*X[i] for i in range(size)])
+        B -= (learning_rate/size) * sum([B - Y[i] + W*X[i] for i in range(size)])
+
+    return W, B
 
 
+def main():
+    f = lambda x: 0.2*x+0.3
+    points = 500
+
+    dataset = []
+
+    p = 1000
+
+    for i in range(p):
+        x = np.random.normal(0.0, 0.55)
+        y = f(x) + np.random.normal(0.0, 0.03)
+        dataset.append([x, y])
+
+    x_data = [data[0] for data in dataset]
+    y_data = [data[1] for data in dataset]
+
+    plt.plot(x_data, y_data, '.')
+    plt.xlabel('x')
+    plt.ylabel('y')
+    plt.show()
+
+    print(linear_regression(data_set=dataset, learning_rate=0.5, epoch=15))
+
+
+if __name__ == '__main__':
+    main()
