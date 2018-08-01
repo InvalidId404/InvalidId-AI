@@ -1,5 +1,6 @@
 import numpy as np
 import scipy.special
+import tensorflow as tf
 
 
 class NeuralNetwork:
@@ -178,3 +179,6 @@ class FeedfowardNeuralNetwork_WeightAttenuation(FeedfowardNeuralNetwork):
     def sum_of_squares(self, iterable):
         avg = sum(sum(iterable))/(len(iterable)*len(iterable[0]))
         return sum(sum((iterable-avg)**2))
+
+
+        
