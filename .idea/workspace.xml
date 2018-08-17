@@ -23,10 +23,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="word2vec.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="word2vec.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/word2vec.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="296">
+            <state relative-caret-position="297">
               <caret line="41" column="51" selection-start-line="41" selection-start-column="51" selection-end-line="41" selection-end-column="51" />
               <folding>
                 <element signature="e#12#35#0" expanded="true" />
@@ -35,13 +35,14 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="textrank.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="textrank.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/textrank.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="44">
-              <caret line="2" column="34" lean-forward="true" selection-start-line="2" selection-start-column="34" selection-end-line="2" selection-end-column="34" />
+            <state relative-caret-position="175">
+              <caret line="62" column="3" lean-forward="true" selection-start-line="62" selection-start-column="3" selection-end-line="62" selection-end-column="3" />
               <folding>
-                <element signature="e#0#15#0" expanded="true" />
+                <element signature="e#24#39#0" expanded="true" />
+                <element signature="e#184#2268#0" />
               </folding>
             </state>
           </provider>
@@ -102,9 +103,9 @@
         <option value="$PROJECT_DIR$/expection.py" />
         <option value="$PROJECT_DIR$/word2vec.py" />
         <option value="$PROJECT_DIR$/tools/textrank.py" />
-        <option value="$PROJECT_DIR$/textrank.py" />
         <option value="$PROJECT_DIR$/quine.py" />
         <option value="$PROJECT_DIR$/cut2chase_main.py" />
+        <option value="$PROJECT_DIR$/textrank.py" />
       </list>
     </option>
   </component>
@@ -119,7 +120,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -136,6 +136,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -295,18 +296,17 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.1796875" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.1796875" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.5005208" side_tool="true" weight="0.28723404" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49947917" weight="0.28723404" />
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Python Console" order="7" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49947917" weight="0.28723404" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Terminal" order="7" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -615,16 +615,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/textrank.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="44">
-          <caret line="2" column="34" lean-forward="true" selection-start-line="2" selection-start-column="34" selection-end-line="2" selection-end-column="34" />
-          <folding>
-            <element signature="e#0#15#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/cut2chase_main.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="66">
@@ -634,10 +624,21 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/word2vec.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="296">
+        <state relative-caret-position="297">
           <caret line="41" column="51" selection-start-line="41" selection-start-column="51" selection-end-line="41" selection-end-column="51" />
           <folding>
             <element signature="e#12#35#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/textrank.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="175">
+          <caret line="62" column="3" lean-forward="true" selection-start-line="62" selection-start-column="3" selection-end-line="62" selection-end-column="3" />
+          <folding>
+            <element signature="e#24#39#0" expanded="true" />
+            <element signature="e#184#2268#0" />
           </folding>
         </state>
       </provider>
