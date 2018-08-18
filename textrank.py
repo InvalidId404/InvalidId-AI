@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import networkx
+import gensim
 from collections import Counter
 from itertools import combinations
 from konlpy.tag import Okt
@@ -102,6 +103,14 @@ def summarize(document, unit='sentence', lines_to_summarize=3, language='kor'):
             if sentence:
                 result.append(sentence)
         return result
+    
+    def make_vocab(text):
+        twitter = Okt()
+        vocab = []
+        for sentence in text:
+            vocab.append(*twitter.pharse(sentence))
+        vocab=list(set(vocab))
+        retrun vocab
 
     def jac_index(a: Sentence, b: Sentence):
         mult_a = Counter(a.nouns)
@@ -112,6 +121,8 @@ def summarize(document, unit='sentence', lines_to_summarize=3, language='kor'):
 
     def tf_idf(a, b):
         pass
+    
+    def 
 
     def textrank(sentences, func=jac_index):
         graph = networkx.Graph()
