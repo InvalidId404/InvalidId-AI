@@ -14,7 +14,7 @@
       <file leaf-file-name="expection.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/expection.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
+            <state relative-caret-position="167">
               <caret line="34" column="12" selection-start-line="34" selection-start-column="12" selection-end-line="34" selection-end-column="12" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
@@ -38,10 +38,11 @@
       <file leaf-file-name="textrank.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/textrank.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="230">
-              <caret line="137" column="57" lean-forward="true" selection-start-line="137" selection-start-column="57" selection-end-line="137" selection-end-column="57" />
+            <state relative-caret-position="312">
+              <caret line="138" column="28" selection-start-line="138" selection-start-column="28" selection-end-line="138" selection-end-column="28" />
               <folding>
                 <element signature="e#24#39#0" expanded="true" />
+                <element signature="e#227#234#0" />
               </folding>
             </state>
           </provider>
@@ -113,11 +114,11 @@
         <option value="$PROJECT_DIR$/genetic_algorithm.py" />
         <option value="$PROJECT_DIR$/test.py" />
         <option value="$PROJECT_DIR$/neuralnetwork.py" />
-        <option value="$PROJECT_DIR$/expection.py" />
         <option value="$PROJECT_DIR$/word2vec.py" />
         <option value="$PROJECT_DIR$/tools/textrank.py" />
         <option value="$PROJECT_DIR$/quine.py" />
         <option value="$PROJECT_DIR$/cut2chase_main.py" />
+        <option value="$PROJECT_DIR$/expection.py" />
         <option value="$PROJECT_DIR$/textrank.py" />
       </list>
     </option>
@@ -311,12 +312,12 @@
     <frame x="-7" y="-7" width="1358" height="814" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25669643" />
+      <window_info content_ui="combo" id="Project" order="0" weight="0.25669643" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.5005208" side_tool="true" weight="0.28723404" />
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Python Console" order="7" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49947917" visible="true" weight="0.28714284" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49947917" visible="true" weight="0.2857143" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Terminal" order="7" />
       <window_info id="Favorites" order="2" side_tool="true" />
@@ -332,6 +333,28 @@
       <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="right" id="Data View" order="3" />
     </layout>
+    <layout-to-restore>
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49947917" visible="true" weight="0.28714284" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25669643" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info anchor="right" id="Commander" order="0" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="right" id="R Graphics" order="3" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="right" id="R Packages" order="4" />
+      <window_info anchor="bottom" id="Python Console" order="7" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Terminal" order="8" />
+      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5005208" side_tool="true" weight="0.28723404" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="Version Control" order="10" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="right" id="Data View" order="5" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+    </layout-to-restore>
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
@@ -602,16 +625,6 @@
     <entry file="file://D:/Programming/Anaconda/envs/tensorflow/Lib/site-packages/tensorflow/python/framework/tensor_util.py" />
     <entry file="file://D:/Programming/Anaconda/envs/tensorflow/Lib/site-packages/tensorflow/python/ops/variables.py" />
     <entry file="file://$PROJECT_DIR$/tools/textrank.py" />
-    <entry file="file://$PROJECT_DIR$/expection.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret line="34" column="12" selection-start-line="34" selection-start-column="12" selection-end-line="34" selection-end-column="12" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/quine.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="44">
@@ -646,12 +659,23 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/expection.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="167">
+          <caret line="34" column="12" selection-start-line="34" selection-start-column="12" selection-end-line="34" selection-end-column="12" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/textrank.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="230">
-          <caret line="137" column="57" lean-forward="true" selection-start-line="137" selection-start-column="57" selection-end-line="137" selection-end-column="57" />
+        <state relative-caret-position="312">
+          <caret line="138" column="28" selection-start-line="138" selection-start-column="28" selection-end-line="138" selection-end-column="28" />
           <folding>
             <element signature="e#24#39#0" expanded="true" />
+            <element signature="e#227#234#0" />
           </folding>
         </state>
       </provider>

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import networkx
-from gensim.models import word2vec
+from sklearn.feature_extraction.text import TfidfVectorizer
 from collections import Counter
 from itertools import combinations
 from konlpy.tag import Okt
@@ -108,7 +108,7 @@ def summarize(document, unit='sentence', lines_to_summarize=3, language='kor'):
             if sentence:
                 result.append(sentence)
         return result
-    
+
     def make_vocab(text):
         twitter = Okt()
         vocab = []
@@ -136,8 +136,10 @@ def summarize(document, unit='sentence', lines_to_summarize=3, language='kor'):
         result = 0
         for sentence in sen:
             if a.word in sentence and b.word in sentence:
-                result += 1
-        return result/100
+                result += 1 
+        return result/sum([
+            a.word in line or b.word in line for line in segment(document)
+        ])
 
     def textrank(sentences, func=jac_index):
         graph = networkx.Graph()
@@ -158,3 +160,5 @@ def summarize(document, unit='sentence', lines_to_summarize=3, language='kor'):
     sorted_wrd = sorted(li_wrd, key=lambda x: x[1], reverse=True)
 
     return sorted_doc if unit=='sentence' else 'word'
+
+print(summarize(corpus))
